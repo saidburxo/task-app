@@ -1,0 +1,63 @@
+<div class="container">
+    <div class="row mb-4">
+        <div class="col">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        <%= task.title%>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+        <div class="col">
+            <h3 class="text-center text-success ">View Task</h3>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        <%= task.title %>
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">Are you sure to delete <%= task.title %>?</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Close
+                    </button>
+                    <a href="/dashboard/delete/<%= task._id  %>" class="btn btn-primary">Ok</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="delete-button mb-4">
+        <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-danger delete-btn">
+            Delete
+        </button>
+    </div>
+
+
+    <!-- update -->
+    <form method="post" action="/dashboard/update/<%= task._id %>">
+        <div class="form-group mb-4">
+            <input type="text" class="form-control fw-bold border-1" placeholder="Title" name="title"
+                value="<%= task.title %>" required>
+        </div>
+        <div class="form-group mb-4">
+            <textarea id="body" cols="30" rows="12" class="form-control" placeholder="Take a task..." name="body"
+                required="true">
+                <%= task.body %>
+        </textarea>
+        </div>
+        <div class="form-group mb-4">
+            <button class="btn btn-primary">Update</button>
+        </div>
+    </form>
+</div>
